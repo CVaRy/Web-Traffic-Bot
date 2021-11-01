@@ -1,4 +1,4 @@
-# Web-Traffic-Bot
+# Web Traffic Bot ChromeDriver
 Python ChromeDrive Web Traffic Bot
 ChromeDriver ile Organik Fake olarak sayılmayan organik hit üretilmesini sağlar.
 
