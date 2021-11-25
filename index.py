@@ -15,8 +15,10 @@ def visitwebsite():
     useragent = f.readline(random.randint(0,1000))
     proxy = proxylist[random.randint(0,len(proxylist)-1)]
     chrome_options = webdriver.ChromeOptions()
+    prefs = {"profile.default_content_setting_values.geolocation" :2} #GPS Devre Dışı
+    chrome_options.add_experimental_option("prefs",prefs)
     chrome_options.add_argument('user-agent=%s' % useragent)
-    chrome_options.add_argument('--proxy-server=socks5://%s' % proxy)
+    #chrome_options.add_argument('--proxy-server=socks5://%s' % proxy)
     chrome_options.add_argument("--ignore-certificate-errors")
     chrome_options.add_argument("--disable-geolocation")
     chrome_options.add_argument("--disable-search-geolocation-disclosure")
@@ -25,9 +27,11 @@ def visitwebsite():
     try:
         wait_timex = 0
         hata = 0
-        wait_time = random.randrange(160,240)#Random 60-75 Second Waiting Time
-        browse = chrome.get("https://cvary.xyz/afk-users-page/")
-
+        wait_time = random.randrange(45,60)#Random 60-75 Second Waiting Time
+        browse = chrome.get("https://bit.ly/3HMPxlI")
+        chrome.find_element_by_class_name('fc-button-label').click()
+        time.sleep(30)
+        chrome.execute_script("window.scrollTo(0,2000)")
         while wait_time>wait_timex:
             wait_timex = wait_timex + 1
             time.sleep(1)
@@ -60,12 +64,16 @@ if __name__ == '__main__':
             p5 = multiprocessing.Process(target=visitwebsite)
             p6 = multiprocessing.Process(target=visitwebsite)
             p1.start()
-            #p2.start()
-            #p3.start()
-            #p4.start()
+            p2.start()
+            p3.start()
+            p4.start()
+            p5.start()
+            p6.start()
 
 
             p1.join()
-            #p2.join()
-            #p3.join()
-            #p4.join()
+            p2.join()
+            p3.join()
+            p4.join()
+            p5.join()
+            p6.join()
